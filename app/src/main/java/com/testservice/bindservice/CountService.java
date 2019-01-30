@@ -33,8 +33,8 @@ public class CountService extends Service {
         // TODO Auto-generated method stub
         System.out.println("onBind.....");
         IBinder result = null;
-        // if (null == result) result = new ServiceBinder();
-        if (null == result) result = new MyBinder();
+        // if (null == result) result = new ServiceBinder();//同一个进程
+        if (null == result) result = new MyBinder();//跨进程
         Toast.makeText(this, "onBind333", Toast.LENGTH_LONG).show();
         System.out.println("CountService中的Binder" + result.getClass());
         Log.d("CountService", "onBind");
