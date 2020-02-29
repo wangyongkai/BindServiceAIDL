@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Binder;
 import android.os.IBinder;
+import android.os.Process;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.util.Log;
@@ -37,7 +38,7 @@ public class CountService extends Service {
         if (null == result) result = new MyBinder();//跨进程
         Toast.makeText(this, "onBind333", Toast.LENGTH_LONG).show();
         System.out.println("CountService中的Binder" + result.getClass());
-        Log.d("CountService", "onBind");
+        Log.d("CountService", "onBind" + "pid=" + Process.myPid());
         return result;
     }
 
@@ -67,10 +68,10 @@ public class CountService extends Service {
 
                     }
                     count++;
-                    if (count % 5 == 0) {
+                    if (count % 10 == 0) {
                         try {
-                            // listener_service.getCountFromService(new Book(100, "水壶"));
-                            // serviceListener.sendToActivity(count);
+                            listener_service.getCountFromService(new Book(100, "水壶"));
+                            serviceListener.sendToActivity(count);
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
