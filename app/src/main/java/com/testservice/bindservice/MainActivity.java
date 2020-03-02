@@ -32,18 +32,17 @@ public class MainActivity extends AppCompatActivity {
 //系统会根据aidl生成一个继承IInterface的接口 接口中有静内Stub 静内Stub里有Proxy
 
 
-//Stub类是干甚？
+//Stub类是干甚？（服务端）
 //1.是service中返回的IBinder对象继承的类  2.aidl文件生成的接口中的静态内部类（生成的用于接收client发送过来的消息的）
-//可以理解为远程service中的对象
+//可以理解为远程service中的对象 其中封装了onTransact方法 用于在server端接受client发来的消息 并调用aidl中的方法 所以要实现aidl接口
 
-//Proxy
+
+//Proxy（客户端）
 //供client调用的代理类 实现aidl文件文件中定义的接口 也就是client拿到的接口的多态对象就是Proxy对象  里面有远程binder对象BinderProxy
 
 
 //整个流程：
 //client通过Proxy对象发送数据给BinderProxy      BinderProxy将数据发送给server中的Stub类
-
-
 
 
 //----------------------------------------------------------------------------------------------------------------------------
