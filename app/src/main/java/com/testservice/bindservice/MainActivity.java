@@ -45,6 +45,18 @@ public class MainActivity extends AppCompatActivity {
 //client通过Proxy对象发送数据给BinderProxy      BinderProxy将数据发送给server中的Stub类
 
 
+    //问题：  Stub类为什么要继承binder  Proxy为啥不用？
+    // 因为Stub类要在服务端onTransact方法接收跨进程的消息（个人理解是模型中的 内核空间的右边那块内存映射的区域）
+    // Proxy类有一个IBinder对象 BinderProxy BinderProxy可以调用transact方法向server端发送跨进程消息（个人理解是模型中内核空间左边那块内存映射的区域）
+
+
+    //问题：aidl中的接口继承IInterface 里面有个方法 asBinder() 返回值IBinder 干啥用？
+    //  发现Stub类和Proxy类都实现了此方法
+    // Stub类中返回了this   Proxy类返回的是 BinderProxy
+
+
+
+
 //----------------------------------------------------------------------------------------------------------------------------
     /**
      * 双向通信  一个进程中
