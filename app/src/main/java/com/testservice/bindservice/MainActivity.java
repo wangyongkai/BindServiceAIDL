@@ -55,6 +55,8 @@ public class MainActivity extends AppCompatActivity {
     // Stub类中返回了this   Proxy类返回的是 BinderProxy
 
 
+    //问题：service中的onBind方法什么意思
+    //个人理解：是service中对外宣布的可以用来跨进程通信的binder
 
 
 //----------------------------------------------------------------------------------------------------------------------------
